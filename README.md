@@ -507,9 +507,13 @@ Special variables are globally available variables which provides information ab
 ## *Ether Units*
 
 1 wei == 1
+	
 1 gwei == 1e9
+	
 1 szabo == 1e12
+	
 1 finney == 1e15
+	
 1 ether == 1e18
 
 ## *Other Important Keywords*
