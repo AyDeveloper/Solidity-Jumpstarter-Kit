@@ -643,6 +643,7 @@ contract Sample {
 ```
 
 **Receive function:** A contract can now have only one receive function that is declared with the syntax 
+	
 receive() external payable {…} (without the function keyword).
 
 It executes on calls to the contract with no data (calldata), such as calls made via send() or transfer().
