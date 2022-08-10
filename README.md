@@ -4,13 +4,13 @@
 Do you need a solidity-refresher or want your solidity-basic-muscles revitalised? 
 This guide is intended to help beginners, developer(that seeks refresher) get familiar or acquainted with solidity syntax and smart contract in general.
 
-## Inspiration
+## *Inspiration*
 
 There are times where we want to look up on basic solidity concepts or need some refreshers? What if we could jump-start this process.
 
 
 
-## Solidity Definition
+## *Solidity Definition*
 
 Simply put, Solidity is an object-oriented, high-level language for implementing smart contracts. It has resemblance with other object-oriented programming language like C++, Javascript, Python et al but specifically designed to target the Ethereum Virtual Machine(EVM).
 
