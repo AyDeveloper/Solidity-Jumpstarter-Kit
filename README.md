@@ -12,7 +12,7 @@ There are times where we want to look up on basic solidity concepts or need some
 
 ## Solidity Definition
 
-Simply put, Solidity is an object-oriented, high-level language for implementing smart contracts. It has resemblance with other object-oriented programming language like C++, Javascript, Python et al but specifically designed to target the Ethereum Virtual Machine(EVM).
+Simply put, Solidity is an object-oriented, high-level language for implementing smart contracts. It is quite similar to other object-oriented programming language like C++, Javascript, Python e.t.c. However, solidity is specifically designed to target the Ethereum Virtual Machine(EVM).
 
 So if you write one of the highlighted languages, you can easily pick up solidity
 
@@ -31,11 +31,11 @@ A Simple Smart Contract
 // This line tells us that the source code is licensed under the GPL version 3.0.
 // SPDX-License-Identifier: GPL-3.0
 
-// This line specifies that the source code is written for Solidity version 0.7.0 
+// This line specifies that the source code is written for Solidity compiler version 0.7.0 
 // or a newer version of the language up to, but not including version 0.9.0.
 pragma solidity >=0.7.0 <0.9.0;
 
-// A contract is declared using a contract keyword followed by the contract name
+// A contract is declared using a contract keyword followed by the contract's name
 
 contract Storage {
 
@@ -72,6 +72,14 @@ Unsigned : uint8,uint16,uint32,uint64,uint128,uint256(uint)
 
 Signed : int8, int16, int32, int64, int128, int256(int)
 
+As stated above, solidity can have signed (a regular int) or unsigned (uint) integers.
+
+int: means that the integer can either be positive or negative with a negative sign.
+
+uint (unsigned integer): can hold only positive values along with zero.
+
+For example, uint8 ranges from 0 to 255 while an int8 can hold from -128 to 127.
+
 **Address**
 
 address: Holds a 20 byte value (size of an Ethereum address).
@@ -91,7 +99,7 @@ address payable : Same as address, but includes additional members transfer a
 
 Mappings uses the syntax mapping(KeyType => ValueType) with its variable name in front.
 
-Example Mapping(address => uint) balanceOf
+Example Mapping(address => uint) addressToBalance
 
 Note: The KeyType can be any built-in value type, bytes, string, or any contract or enum type. Other user-defined or complex types, such as mappings, structs or array types are not allowed. 
 ValueType can be any type, including mappings, arrays and structs.
@@ -119,7 +127,12 @@ Arrays can be of fixed size, or they can have a dynamic size.
 - uint[7] fixedSizeArray;
 
 **Array members**: 
-push, pop, length
+
+*push:* appends an item to an array, i.e will increase the array length by 1.
+
+*pop:* removes the last element from an array i.e will decrease the array length by 1
+
+*length:* is used to check the number of elements present in an array.
 
 ## *Data Locations - Storage, Memory and Calldata*
 
@@ -127,9 +140,9 @@ Each variable declared and used in a contract has a data location. It specifies 
 
 **Storage:** A storage variable is stored in the state of a smart contract and is persistent between function calls. It is the permanent residence of data which makes it accessible by all functions within a contract.
 
-**Memory:** The memory location is stores data temporarily and cheaper than the storage location. It can only be accessible within the function. It is important to note that once the function gets executed, its values are discarded. 
+**Memory:** The memory location stores data temporarily and is cheaper than the storage location. It is only accessible within the function in which it was declared. It is important to note that once the function gets executed, its values are discarded.
 
-**Calldata:** Calldata is non-modifiable and non-persistent data location where all the passing values to the function are stored. Also, Calldata is the default location of parameters (not return parameters) of external functions.
+**Calldata:** Calldata is a non-persistent data location where all the passing values to the function are stored. However, unlike Storage and Memory that hold mutable data, Calldata is a non-modifiable storage location.. Also, Calldata is the default location of parameters (not return parameters) of external functions.
 
 ## *Functions* 
 
@@ -153,7 +166,8 @@ function add(uint _x, uint _y) returns (uint _sum) {
 
 ```
 
-Note: In contrast to the parameter types, the return types cannot be empty - if the function type should not return anything, the whole returns (<return types>) part has to be omitted.
+Note:In contrast to the parameter types, the return types cannot be empty - if the function does not return anything, the returns () keyword need not be included in the function declaration.
+
 ## *Control Structure*
 
 Most of the control structures known from object-oriented programming languages are available in Solidity:  The following are available in solidity:
@@ -169,7 +183,7 @@ Most of the control structures known from object-oriented programming languages 
 
 
 ## *Modifiers: Custom and Access Modifiers*
-Modifiers helps automatically check if certain pre-conditions have been met
+Modifiers automatically check if certain pre-conditions have been met and restrict access of variables or functions to parties that satisfy the conditions
 
 **Custom Modifier**
 
@@ -199,13 +213,13 @@ The following are the characteristics of an interface:
 
 * An interface can be created with the “interface” keyword.
 * All interface functions are implicitly virtual.
-* To easily identifier an interface,  it’s naming can start with an “I” e.g IERC20
+* To easily identify an interface,  it’s naming can start with an “I” e.g IERC20
 * Cannot have any functions implemented.
 * Cannot inherit other contracts or interfaces.
 * Cannot define constructor.
 * Cannot declare state variables
 * An interface function can be overridden.
-* Functions of an interface can be only of type external
+* Visibility of functions of an interface can be only of type external
 
 Example
 
@@ -661,11 +675,14 @@ contract ReceiveSample {
 **Fallback function:** fallback function does not take any arguments and does not return anything.
 
 Characteristics 
-* a function that does not exist is called or
-* Ether is sent directly to a contract but receive() does not exist or msg.data is not empty
-* Can be defined once per contract.
-* It is mandatory to mark it external
-* fallback has a 2300 gas limit when called by transfer or send.
+
+Fallback function;
+
+* is triggered if function that does not exist is called.
+* is triggered if Ether is sent directly to a contract but receive() does not exist or msg.data is not empty.
+* can only be defined once per contract.
+* must be marked as external.
+* has a 2300 gas limit when called by transfer or send.
 
 
 ```solidity
@@ -681,7 +698,7 @@ contract Fallback {
 }
 ```
 
-**View functions:** Functions can be declared view in which case they promise not to modify the state, but can read from them.
+**View functions:**  The mutability of functions can be declared as view if they do not contain any code/logic that potentially modifies the state, but can read from them.
 
 ```solidity
 function sub(uint a) view returns (uint) {
@@ -689,8 +706,7 @@ function sub(uint a) view returns (uint) {
 }
 ```
 
-**Pure functions:** Functions can be declared pure in which case they promise not to read from or modify the state.
-
+**Pure functions:** Functions can be declared pure if they neither read from nor modify the state.
 ```solidity
 function mul(uint a, uint b)pure returns (uint) {
     return a * b; //  where b is a storage variable
