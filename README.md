@@ -2,6 +2,7 @@
 # Solidity-Jumpstarter-Kit
 
 Do you need a solidity-refresher or want your solidity-basic-muscles revitalised? 
+
 This guide is intended to help beginners, developer(that seeks refresher) get familiar or acquainted with solidity syntax and smart contract in general.
 
 ## Inspiration
@@ -762,3 +763,11 @@ function mul(uint a, uint b)pure returns (uint) {
 **Vs Code:** Visual Studio Code extension that adds support for Solidity
 
 **IntelliJ:**  Open-source plug-in for Jetbrains IntelliJ Idea IDE(free/commercial) with syntax highlighting, formatting, code completion etc.
+	
+## CONCLUSION
+	
+This sole aim of this guide is to help beginners, developers(that seek a refresher) get familiar or acquainted with solidity syntax and smart contract in general. I hope it does that!!.
+
+Thanks to all that have taken their time to review this content. WAGMI 🚀 🚀
+
+For the love of the community, all forms of contribution are welcomed.
